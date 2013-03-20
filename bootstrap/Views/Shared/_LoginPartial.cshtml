@@ -1,0 +1,16 @@
+﻿@if (Request.IsAuthenticated)
+{
+	<text>
+	@Html.ActionLink("Manage Account", "Manage", "Account", null, new { @class = "navbar-link", title = "Manage" })
+	 | 
+	@Html.ActionLink("Create", "Index", "Playlist", null, new { @class = "navbar-link", title = "Manage" })
+	 | 
+	@Ajax.ActionLink("Log Off", "LogOff", "Account", new RouteValueDictionary(), new AjaxOptions { HttpMethod = "Post" }, new { @class = "navbar-link" })
+	</text>
+}
+else
+{
+	@Html.ActionLink("Register", "Register", "Account", null, new { @class = "navbar-link" })
+	<text> | </text>
+	@Html.ActionLink("Log in", "Login", "Account", null, new { @class = "navbar-link" })
+}

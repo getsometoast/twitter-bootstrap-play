@@ -1,0 +1,68 @@
+﻿@model bootstrap.Models.Playlist
+@{
+	ViewBag.Title = "title";
+}
+@section scripts {
+	<script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+
+	<style type="text/css">
+		#map-container {
+			position: relative;
+			width: 1000px;
+			height: 600px;
+			border-radius: 4px;
+			border: solid black 4px;
+		}
+
+		.map {
+			position: relative;
+			width: 1000px;
+			height: 600px;
+		}
+	</style>
+
+	<script type="text/javascript">
+
+		$(function () {
+			GetMap();
+		});
+
+		function GetMap() {
+			var map = new window.Microsoft.Maps.Map(document.getElementById("mapDiv"),
+				{
+					credentials: "Apie3xWlZVkwBpx4MshOcYJCYqV4EmMPJQMqvy-nC4rdo1Lj_j5TzKOR48wDVE0-",
+					center: new window.Microsoft.Maps.Location(51.5034, -0.103683),
+					mapTypeId: window.Microsoft.Maps.MapTypeId.road,
+					zoom: 12,
+					showScalebar: false
+				});
+		}
+	</script>
+}
+
+<div class="hero-unit">
+	<h2>Das Playlist:</h2>
+
+	<div id="map-container" class="container">
+		<div id='mapDiv' class="map"></div>
+	</div>
+</div>
+
+<div class="row-fluid">
+	@foreach (var track in Model.Tracks)
+ {
+		<div class="span4">
+
+			<h2>@track.Venue.Name</h2>
+			@track.Arrive
+			@track.Depart
+			<p>@track.Description</p>
+			<p><a class="btn" href="#">View details &raquo;</a></p>
+			
+
+			@track.Venue.Location
+			@track.Venue.Description
+			@track.Venue.Type
+		</div>
+ }
+</div>
